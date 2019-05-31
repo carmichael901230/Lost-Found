@@ -5,8 +5,25 @@
 </head>
 <body>
     <h1> Lost And Found </h1>
-    <a href="./lost">Lost</a>
-    <a href="./found>">Found</a>
+    {% block login-block %}
+    
+    <div>
+    {% if user.is_authenticated %}
+    <p>Hi {{ user.username }}!</p>
+    <p>Not You? <a href="{% url 'logout' %}">Logout</a></p>
+    </div>
+    <div>
+    <a href="./lost/">Register Item</a>
+    <a href="./found/">Retrieve Item</a>
+    </div>
+    <div>
+    {% else %}
+    <p>You are not logged in</p>
+    <a href="{% url 'login' %}">login</a>
+    {% endif %}
+    </div>
+
+    {% endblock login-block %}
 </body>
 
 </html>
