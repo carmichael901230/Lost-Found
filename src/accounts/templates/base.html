@@ -14,7 +14,15 @@
 
         {% block content-block %}
         <div>
+        <p>Welcome,
+        {% if user.is_authenticated %}
+            {{ user.username }} </p>
+            <p>Not you? <a href="{% url "accounts:logout" %}">Logout</a></p>
+        {% else %} 
+            You are not login yet </p>
+        {% endif %}
         <p>Home page content</p>
+        <p><a href="{% url 'accounts:login' %}">Login</a> <a href="{% url 'accounts:register' %}">Register</a></p>
         </div>
         {% endblock content-block %}
     </body>
