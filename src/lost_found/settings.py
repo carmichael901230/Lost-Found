@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     # addon apps
     'item',
     'accounts',
+    'profiles',
 ]
 
 MIDDLEWARE = [
