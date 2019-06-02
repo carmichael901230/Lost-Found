@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse, redirect
-# from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login, authenticate
+from profiles.forms import UserProfileForm
 from .forms import UserRegisterForm
 
 def base_view(request):
@@ -12,14 +12,24 @@ def loggedout_view(request):
 
 def register_view(request):
     if request.method == 'POST':
-        form = UserRegisterForm(request.POST)
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            raw_password = form.cleaned_data.get('password1')
+        profile_form = UserProfileForm(request.POST or None)
+        register_form  = UserRegisterForm(request.POST or None)
+        if register_form.is_valid() and profile_form.is_valid():
+            user = register_form.save()
+            profile_form.save(commit=False)
+            profile_form.user = user
+            profile_form.save(commit=True)
+
+            username = user.cleaned_data.get('username')
+            raw_password = user.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
             return redirect('accounts:base')
     else:
-        form = UserRegisterForm()
-    return render(request, 'accounts/register.html', {'form': form})
+        register_form = UserRegisterForm()
+        profile_form = UserProfileForm()
+        context = {
+            'register_form':register_form,
+            'profile_form':profile_form    
+        }
+    return render(request, 'accounts/register.html', context)

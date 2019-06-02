@@ -13,7 +13,47 @@
 {% block content-block %}
 <div>
     <form method='POST'>    {% csrf_token %}
-        {{form.as_p}}
+                {{ register_form.non_field_errors }}
+        <div>
+        {{ register_form.username.errors }}
+        <label for="{{ register_form.username.id_for_label }}">User Name: </lebel>
+        {{ register_form.username }}
+        </div>
+        <div>
+        {{ profile_form.employeeID.errors }}
+        <label for="{{ profile_form.employeeID.id_for_label }}">Employee ID: </lebel>
+        {{ profile_form.employeeID }}
+        </div>
+        <div>
+        {{ register_form.password1.errors }}
+        <label for="{{ register_form.password1.id_for_label }}">Password: </lebel>
+        {{ register_form.password1 }}
+        </div>
+        <div>
+        {{ register_form.password1.errors }}
+        <label for="{{ register_form.password2.id_for_label }}">Password Confirm: </lebel>
+        {{ register_form.password2 }}
+        </div>
+        <div>
+        {{ register_form.first_name.errors }}
+        <label for="{{ register_form.first_name.id_for_label }}">First Name: </lebel>
+        {{ register_form.first_name }}
+        </div>
+        <div>
+        {{ register_form.last_name.errors }}
+        <label for="{{ register_form.last_name.id_for_label }}">Last Name: </lebel>
+        {{ register_form.last_name }}
+        </div>
+        <div>
+        {{ register_form.email.errors }}
+        <label for="{{ register_form.email.id_for_label }}">Email Address: </lebel>
+        {{ register_form.email }}
+        </div>
+        <div>
+        {{ profile_form.phone.errors }}
+        <label for="{{ profile_form.phone.id_for_label }}">Phone Number: </lebel>
+        {{ profile_form.phone }}
+        </div>
         <input type="submit" value="Register" >
     </form>
 </div>
