@@ -6,8 +6,8 @@ from django.contrib.auth.models import User
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    employeeID = models.CharField(max_length=10, blank=False, null=False)
-    phone = models.CharField(max_length=12, blank=True, null=True)
+    employeeID = models.CharField(max_length=10, blank=False,null=False)
+    phone = models.CharField(max_length=12)
     
 # @receiver(post_save, sender=User)
 # def user_is_created(sender, instance, created, **kwargs):

@@ -30,10 +30,3 @@ class UserRegisterForm(UserCreationForm):
             user.save()
         return user
 
-class UserProfileForm(forms.ModelForm):
-    class Meta:
-        model = Profile
-        fields = [
-            'employeeID',
-            'phone',
-        ]

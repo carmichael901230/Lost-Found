@@ -10,10 +10,12 @@
 </div>
 {% endblock %}
 
+
+
 {% block content-block %}
 <div>
     <form method='POST'>    {% csrf_token %}
-                {{ register_form.non_field_errors }}
+        {{ register_form.non_field_errors }}
         <p>
         {{ register_form.username.errors }}
         <label for="{{ register_form.username.id_for_label }}">User Name: </lebel>
