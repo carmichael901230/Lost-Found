@@ -8,3 +8,10 @@ class UserProfileForm(forms.ModelForm):
             'employeeID',
             'phone',
         ]
+
+class ProfileEditForm(forms.ModelForm):
+    class Meta:
+        model =Profile
+        fields = [
+            'phone',
+        ]

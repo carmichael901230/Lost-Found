@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title-block %}
+<title>Profile</title>
+{% endblock title-block %}
+
+{% block head-block %}
+<h1>Profile</h1>
+{% endblock head-block %}
+
+{% block content-block %}
+<div>
+    <p>User Name: {{ user.username }}</p>
+    <p>First Name: {{ user.first_name }}</p>
+    <p>Last Name: {{ user.last_name }}</p>
+    <p>Email: {{ user.email }}</p>
+    <p>Employee ID: {{ profile.employeeID }}</p>
+    <p>Phone: {% if profile.phone is not None %} 
+                {{ profile.phone }} 
+              {% else %} 
+                None 
+              {% endif %}</p>
+</div>
+<div>
+  <a href="{% url 'accounts:profile_edit' %}">Edit</a>
+</div>
+{% endblock content-block %}

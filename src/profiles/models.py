@@ -9,6 +9,7 @@ class Profile(models.Model):
     employeeID = models.CharField(max_length=10, blank=False,null=False)
     phone = models.CharField(max_length=12)
     
+    objects = models.Manager()
 # @receiver(post_save, sender=User)
 # def user_is_created(sender, instance, created, **kwargs):
 #     if created:

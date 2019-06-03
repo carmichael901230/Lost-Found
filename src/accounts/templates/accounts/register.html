@@ -16,44 +16,45 @@
 <div>
     <form method='POST'>    {% csrf_token %}
         {{ register_form.non_field_errors }}
+        {{ profile_form.non_field_errors }}
         <p>
         {{ register_form.username.errors }}
-        <label for="{{ register_form.username.id_for_label }}">User Name: </lebel>
+        <label for="{{ register_form.username.id_for_label }}">User Name: </label>
         {{ register_form.username }}
         </p>
         <p>
         {{ profile_form.employeeID.errors }}
-        <label for="{{ profile_form.employeeID.id_for_label }}">Employee ID: </lebel>
+        <label for="{{ profile_form.employeeID.id_for_label }}">Employee ID: </label>
         {{ profile_form.employeeID }}
         </p>
         <p>
         {{ register_form.password1.errors }}
-        <label for="{{ register_form.password1.id_for_label }}">Password: </lebel>
+        <label for="{{ register_form.password1.id_for_label }}">Password: </label>
         {{ register_form.password1 }}
         </p>
         <p>
         {{ register_form.password1.errors }}
-        <label for="{{ register_form.password2.id_for_label }}">Password Confirm: </lebel>
+        <label for="{{ register_form.password2.id_for_label }}">Password Confirm: </label>
         {{ register_form.password2 }}
         </p>
         <p>
         {{ register_form.first_name.errors }}
-        <label for="{{ register_form.first_name.id_for_label }}">First Name: </lebel>
+        <label for="{{ register_form.first_name.id_for_label }}">First Name: </label>
         {{ register_form.first_name }}
         </p>
         <p>
         {{ register_form.last_name.errors }}
-        <label for="{{ register_form.last_name.id_for_label }}">Last Name: </lebel>
+        <label for="{{ register_form.last_name.id_for_label }}">Last Name: </label>
         {{ register_form.last_name }}
         </p>
         <p>
         {{ register_form.email.errors }}
-        <label for="{{ register_form.email.id_for_label }}">Email Address: </lebel>
+        <label for="{{ register_form.email.id_for_label }}">Email Address: </label>
         {{ register_form.email }}
         </p>
         <p>
         {{ profile_form.phone.errors }}
-        <label for="{{ profile_form.phone.id_for_label }}">Phone Number: </lebel>
+        <label for="{{ profile_form.phone.id_for_label }}">Phone Number: </label>
         {{ profile_form.phone }}
         </p>
         <input type="submit" value="Register" >

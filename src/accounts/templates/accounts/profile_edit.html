@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title-block %}
+<title>Profile Edit</title>
+{% endblock title-block %}
+
+{% block head-block %}
+<h1>Profile Edit</h1>
+{% endblock head-block %}
+
+{% block content-block %}
+<div>
+<form method="POST"> {% csrf_token %}
+    {{ user_form.as_p }} 
+    {{ profile_form.as_p }}
+    <input type="submit" value="Save"/>
+    <a href="../">Cancel</a>
+</form>
+<br>
+</div>
+{% endblock content-block %}
