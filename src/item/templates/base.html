@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+    <head>
+        {% block title-block %}
+        <title>Welcome</title>
+        {% endblock title-block %}
+    </head>
+    <body>
+        <div class="container">
+            {% block head-block %}
+            <div class="container">
+            <h1>Home Page</h1>
+            </div>
+            {% endblock head-block %}
+
+            {% block content-block %}
+            <div class="container">
+            <h2>Welcome, 
+            {% if user.is_authenticated %}
+            {{ user.username }} 
+            <h2>Not you? <a href="{% url 'accounts:logout' %}">Logout</a></h2>
+            {% else %}
+            You are not login yet. <a href="{% url 'accounts:login' %}">Login</a>
+            {% endif %}
+            </h2>
+            </div>
+            {% endblock content-block %}
+        </div>
+    </body>
+</html>
