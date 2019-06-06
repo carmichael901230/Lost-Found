@@ -52,7 +52,8 @@ class ShowItemForms(forms.ModelForm):
             (45,"Watches"),
             (46,"Glasses"),
             (49,"Other Accessories")
-        ))
+        )),
+
     ]
     category = forms.ChoiceField(choices=CHOICES)
     

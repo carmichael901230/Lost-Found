@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.shortcuts import reverse
 
 # Create your models here.
 class Item(models.Model):
@@ -16,3 +17,6 @@ class Item(models.Model):
     retrieve_user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="retrieved_items", blank=True, null=True)
 
     objects = models.Manager()
+
+    def get_absolute_url(self):
+        return reverse('items:show_item', kwargs={'item_id':self.pk})
