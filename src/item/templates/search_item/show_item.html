@@ -12,7 +12,51 @@
 {% endblock head-block %}
 
 {% block content-block %}
-<form method="POST">
-    {{ form.as_p}}
-</form>
+<div class="container">
+    <form method="POST"> {% csrf_token %}
+        {{ form.non_field_errors }}
+        <p>
+        {{ form.category.error }}
+        <label for="{{ form.category.id_for_label }}">Categoy: </label>
+        {{ form.category }}
+        </p>
+        <p>
+        {{ form.image.error }}
+        <label for="{{ form.image.id_for_label }}">Image: </label>
+        {% if item.image %}
+        <br>
+        <img src="{{ item.image.url }}" width="240" height="240"/>
+        {% else %}
+        No Image
+        {% endif %}
+        </p>
+        <p>
+        {{ form.building.error }}
+        {{ form.room.error }}
+        <label for="{{ form.building.id_for_label }}">Location of Found: </label>
+        {{ form.building }} {{ form.room }}
+        </p>
+        <p>
+        {{ form.date.error }}
+        {{ form.time.error }}
+        <label for="{{ form.date.id_for_label }}">Time of Found: </label>
+        {{ form.date }}
+        {{ form.time}}
+        </p>
+        <p>
+        {{ form.description.error }}
+        <label for="{{ form.description.id_for_label }}">Description: </label>
+        {{ form.description }}
+        </p>
+        <p>
+        {{ form.retrieved.error }}
+        <label for="{{ form.retrieved.id_for_label }}">Retrieve Status: </label>
+        {{ form.retrieved }}
+        </p>
+        
+        <br>
+        <button type="submit" class="btn btn-primary">Edit</button>
+        <a class="btn btn-primary" href="../" role="button">Cancel</a> 
+    </form>
+</div>
 {% endblock content-block %}

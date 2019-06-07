@@ -1,5 +1,6 @@
 from django import forms
 from .models import Item
+import datetime
 
 class ShowItemForms(forms.ModelForm):
     class Meta:
@@ -56,4 +57,35 @@ class ShowItemForms(forms.ModelForm):
 
     ]
     category = forms.ChoiceField(choices=CHOICES)
-    
+    date = forms.DateField(required=False,
+        widget=forms.TextInput(
+            attrs={
+                "placeholder":"YYYY-MM-DD"
+            }
+        ))
+    time = forms.TimeField(required=False,
+        widget=forms.TextInput(
+            attrs={
+                "placeholder":"hh:mm:ss"
+            }
+        ))
+    building = forms.CharField(required=False,
+        widget=forms.TextInput(
+            attrs={
+                "placeholder":"Building"
+            }
+        )
+    )
+    room = forms.CharField(required=False,
+        widget=forms.TextInput(
+            attrs={
+                "placeholder":"Room"
+            }
+        )
+    )
+    STATUS = [
+        (True, "Retrieved"),
+        (False, "Not Retrieved")
+    ]
+    retrieved = forms.ChoiceField(choices = STATUS,
+                              initial='', widget=forms.Select())

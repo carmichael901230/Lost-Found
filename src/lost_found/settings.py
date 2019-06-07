@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'item',
     'accounts',
     'profiles',
+
 ]
 
 MIDDLEWARE = [
@@ -70,6 +71,12 @@ TEMPLATES = [
         },
     },
 ]
+
+TEMPLATE_LOADERS = (
+    'django.template.loaders.filesystem.Loader',
+    'django.template.loaders.app_directories.Loader',
+
+)
 
 WSGI_APPLICATION = 'lost_found.wsgi.application'
 
@@ -104,6 +111,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
@@ -122,5 +130,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'item/media')
+
 LOGIN_REDIRECT_URL = '/accounts'
 # LOGOUT_REDIRECT_URL = '/'
