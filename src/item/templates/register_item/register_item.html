@@ -1,18 +1,13 @@
-
 {% extends 'base.html' %}
 
-{% block title-block %}
-<title>Item {{item.pk}}</title>
-{% endblock title-block %}
-
 {% block head-block %}
-<div class="container">
-<h1>Editing Item</h1>
+<div class='container'>
+<h1>Taking Care of Homeless</h1>
 </div>
 {% endblock head-block %}
 
 {% block content-block %}
-<div class="container">
+<div class='container'>
     <form method="POST"> {% csrf_token %}
         {{ form.non_field_errors }}
         <p>
@@ -23,15 +18,7 @@
         <p>
         {{ form.image.error }}
         <label for="{{ form.image.id_for_label }}">Image: </label>
-        {% if item.image %}
-        <br>
-        <img src="{{ item.image.url }}" width="240" height="240"/>
-        <br>
         {{ form.image }}
-        {% else %}
-        No Image
-        {% endif %}
-        </p>
         <p>
         {{ form.color.error }}
         <label for="{{ form.color.id_for_label }}">Color: </label>
@@ -53,25 +40,10 @@
         <label for="{{ form.description.id_for_label }}">Description: </label>
         {{ form.description }}
         </p>
-        <p>
-        {{ form.retrieved.error }}
-        <label for="{{ form.retrieved.id_for_label }}">Retrieve Status: </label>
-        {{ form.retrieved }}
-        </p>
-        {% if item.retrieved %}
-        <p>
-        <label for="{{ form.retrieve_user.id_for_label }}">Retrieved By: </label>
-        {{ item.retrieve_user }}
-        </p>
-        <p>
-        <label for="{{ form.retrieved_date.id_for_label }}">Retrieved On: </label>
-        {{ item.retrieved_date }}
-        </p>
-        {% endif %}
         
         <br>
         <button type="submit" class="btn btn-primary">Edit</button>
-        <a class="btn btn-primary" href="../" role="button">Cancel</a> 
-    </form>
+        <a class="btn btn-primary" href="../" role="button">Cancel</a>
+    </from>
 </div>
 {% endblock content-block %}
