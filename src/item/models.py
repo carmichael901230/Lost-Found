@@ -5,8 +5,8 @@ from django.utils import timezone
 
 # Create your models here.
 class Item(models.Model):
-    date = models.DateField(default=timezone.now, blank=False, null=False)
-    building = models.CharField(max_length=20, blank=False,null=False)
+    date = models.DateField(default=timezone.now, null=False)
+    building = models.CharField(max_length=20, blank=False,null=False, default="other")
     room = models.CharField(max_length=20, blank=True, null=True)
     color = models.CharField(max_length=10,blank=True,null=True)
     description = models.TextField(blank=True,null=True)

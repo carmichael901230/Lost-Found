@@ -77,7 +77,7 @@ class ShowItemForms(forms.ModelForm):
 
     category = forms.ChoiceField(choices=CATE_CHOICES)
     color = forms.ChoiceField(choices=COLOR_CHOICES)
-    date = forms.DateField(required=False,
+    date = forms.DateField(
         widget=forms.DateInput(format='%m/%d/%Y',
             attrs={
                 "placeholder":"MM/DD/YYYY"
@@ -126,7 +126,9 @@ class RegisterItemForms(forms.ModelForm):
             attrs={
                 "placeholder":"MM/DD/YYYY"
             }
-        ))
+        )
+    )
+    image = forms.ImageField(required=True)
     building = forms.CharField(required=False,
         widget=forms.TextInput(
             attrs={

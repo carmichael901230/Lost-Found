@@ -50,6 +50,8 @@ INSTALLED_APPS = [
     'accounts',
     'profiles',
 
+    # pip installed
+    'django_cleanup',       # auto delete old files after updating
 ]
 
 MIDDLEWARE = [

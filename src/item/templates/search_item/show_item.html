@@ -13,48 +13,48 @@
 
 {% block content-block %}
 <div class="container">
-    <form method="POST"> {% csrf_token %}
+    <form method="POST" enctype="multipart/form-data"> {% csrf_token %}
         {{ form.non_field_errors }}
         <p>
-        {{ form.category.error }}
+        {{ form.category.errors }}
         <label for="{{ form.category.id_for_label }}">Categoy: </label>
         {{ form.category }}
         </p>
         <p>
-        {{ form.image.error }}
+        {{ form.image.errors }}
         <label for="{{ form.image.id_for_label }}">Image: </label>
         {% if item.image %}
         <br>
         <img src="{{ item.image.url }}" width="240" height="240"/>
         <br>
-        {{ form.image }}
         {% else %}
         No Image
         {% endif %}
+        {{ form.image }}
         </p>
         <p>
-        {{ form.color.error }}
+        {{ form.color.errors }}
         <label for="{{ form.color.id_for_label }}">Color: </label>
         {{ form.color }}
         </p>
         <p>
-        {{ form.building.error }}
-        {{ form.room.error }}
+        {{ form.building.errors }}
+        {{ form.room.errors }}
         <label for="{{ form.building.id_for_label }}">Location of Found: </label>
         {{ form.building }} {{ form.room }}
         </p>
         <p>
-        {{ form.date.error }}
+        {{ form.date.errors }}
         <label for="{{ form.date.id_for_label }}">Date of Found: </label>
         {{ form.date }}
         </p>
         <p>
-        {{ form.description.error }}
+        {{ form.description.errors }}
         <label for="{{ form.description.id_for_label }}">Description: </label>
         {{ form.description }}
         </p>
         <p>
-        {{ form.retrieved.error }}
+        {{ form.retrieved.errors }}
         <label for="{{ form.retrieved.id_for_label }}">Retrieve Status: </label>
         {{ form.retrieved }}
         </p>
