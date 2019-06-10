@@ -46,6 +46,7 @@ CATE_CHOICES = [
 ]
 
 COLOR_CHOICES = [
+    ('', "Not Selected"),
     ('white',"White"),
     ('grey',"Grey"),
     ('black',"Black"),
@@ -60,6 +61,9 @@ COLOR_CHOICES = [
 ]
 
 BUILDING_CHOICES = [
+    ("", (
+        (0, "Not Selected"),
+    )),
     ("Buildings", (
         (1, "Alumni Hall"),
         (2, "Campbell Dome"),

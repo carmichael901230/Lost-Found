@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'pages/base.html' %}
 
 {% block head-block %}
 <div class='container'>
@@ -11,36 +11,33 @@
     <form method="GET" name='q'>
     {{ form.non_field_errors }}
     <p>
-    {{ form.category.errors }}
-    <label for="{{ form.category.id_for_label }}">Categoy: </label>
-    {{ form.category }}
-    </p>
-    <p>
-    {{ form.building.errors }} {{ form.room.errors }}
-    <label for="{{ form.building.id_for_label }}">Location of Lost: </label>
-    {{ form.building }} {{ form.room }}
+        {{ form.category.errors }}
+        <label for="{{ form.category.id_for_label }}">Categoy: </label>
+        {{ form.category }}
+
+        {{ form.building.errors }} {{ form.room.errors }}
+        <label for="{{ form.building.id_for_label }}">Location of Lost: </label>
+        {{ form.building }} {{ form.room }}
     </p>
     <p>
     {{ form.from_date.errors }} 
     {{ form.to_date.errors }}
     <p>Time of Lost: 
-    <br>
-    <div class="container">
+        <br>
+        <div class="container">
         <label for="{{ form.from_date.id_for_label }}">From: </label>
         {{ form.from_date }} 
         <label for="{{ form.to_date.id_for_label }}">To: </label>
         {{ form.to_date}}
-    </div>
+        </div>
     </p>
     <p>
-    {{ form.color.errors }}
-    <label for="{{ form.color.id_for_label }}">Color: </label>
-    {{ form.color }}
-    </p>
-    <p>
-    {{ form.retrieved.errors }}
-    <label for="{{ form.retrieved.id_for_label }}">Retrieved Status: </label>
-    {{ form.retrieved }}
+        {{ form.retrieved.errors }}
+        <label for="{{ form.retrieved.id_for_label }}">Retrieved Status: </label>
+        {{ form.retrieved }}
+        {{ form.color.errors }}
+        <label for="{{ form.color.id_for_label }}">Color: </label>
+        {{ form.color }}
     </p>
 
     <button type="submit" class="btn btn-primary">Search</button>
@@ -48,3 +45,6 @@
     </form>
 </div>
 {% endblock content-block %}
+
+{% block search-result-block %}
+{% endblock search-result-block %}

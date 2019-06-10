@@ -46,8 +46,32 @@ def register_item_view(request):
 def search_item_view(request):
     if request.method=="GET":
         form = SearchItemForms(request.GET)
-        context = {
-            'form': form
-        }
-        return render(request, 'search_item/search_item.html', context)
+        if len(request.GET) == 0:
+            context = {
+                'form': form
+            }
+            return render(request, 'search_item/search_item.html', context)
+        else:
+            if form.is_valid():
+                queryset = form.cleaned_data
+                print(queryset)
+                result = Item.objects.filter(category__exact=int(queryset['category']))
+                result = result.filter(retrieved__exact=(True if queryset['retrieved']=='True' else False))
+                if int(queryset['building']):
+                    result = result.filter(building__exact=int(queryset['building']))
+                if queryset['room']:
+                    result = result.filter(room__iexact=queryset['room'])
+                if queryset['from_date']:
+                    result = result.filter(date__gte=queryset['from_date'])
+                if queryset['to_date']:
+                    result = result.filter(date__lte=queryset['to_date'])
+                if queryset['color']:
+                    result = result.filter(color__exact=queryset['color'])
+                print(result)
+
+                context = {
+                    'object_list':result,
+                    'form':form
+                }
+                return render(request, 'search_item/search_result.html', context)
 

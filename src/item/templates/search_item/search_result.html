@@ -1,0 +1,26 @@
+{% extends 'search_item/search_item.html' %}
+
+{% block search-result-block %}
+<table class="table table-hover">
+<thread>
+    <tr>
+        <th scope='col'>ID</th>
+        <th scope='col'>Category</th>
+        <th scope='col'>Location</th>
+        <th scope='col'>Color</th>
+        <th scope='col'>Date</th>
+        <th scope='col'></th>   
+    </tr>
+</thread>
+<tbody>
+    {% for obj in object_list %}
+    <th scope="row">{{obj.pk}}</th>
+    <td>{{obj.category }}</td>
+    <td>{{obj.building}} {% if obj.room %}- {{obj.room}} {% endif %}</td>
+    <td>{{obj.color}}</td>
+    <td>{{obj.data}}</td>
+    <td><a href="{{obj.get_absolute_url}}">View/Edit</a>
+    {% endfor %}
+</tbody>
+</table>
+{% endblock search-result-block %}

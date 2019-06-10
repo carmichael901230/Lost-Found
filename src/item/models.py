@@ -21,3 +21,6 @@ class Item(models.Model):
 
     def get_absolute_url(self):
         return reverse('items:show_item', kwargs={'item_id':self.pk})
+
+    def __str__(self):
+        return "pk:{} cat:{} col:{}".format(self.pk, self.category, self.color)

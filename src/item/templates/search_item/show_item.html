@@ -1,5 +1,5 @@
 
-{% extends 'base.html' %}
+{% extends 'pages/base.html' %}
 
 {% block title-block %}
 <title>Item {{item.pk}}</title>
@@ -71,7 +71,7 @@
         
         <br>
         <button type="submit" class="btn btn-primary">Edit</button>
-        <a class="btn btn-primary" href="../" role="button">Cancel</a> 
+        <a class="btn btn-primary" href="{% url 'items:search_item'%}" role="button">Back</a> 
     </form>
 </div>
 {% endblock content-block %}

@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'item',
     'accounts',
     'profiles',
+    'pages',
 
     # pip installed
     'django_cleanup',       # auto delete old files after updating

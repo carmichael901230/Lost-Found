@@ -21,9 +21,9 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-            <a class="nav-item nav-link active" href="{% url "accounts:base"%}">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link active" href="{% url "accounts:base"%}">Account <span class="sr-only">(current)</span></a>
             <a class="nav-item nav-link" href="{% url 'items:register_item'%}">Register</a>
-            <a class="nav-item nav-link" href="#">Search</a>
+            <a class="nav-item nav-link" href="{% url 'items:search_item'%}">Search</a>
             </div>
         </div>
         </nav>
@@ -48,6 +48,10 @@
             </h2>
             </div>
             {% endblock content-block %}
+
+            {% block search-result-block %}
+            
+            {% endblock search-result-block %}
         </div>
     </body>
 </html>

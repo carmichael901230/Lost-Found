@@ -7,7 +7,7 @@ from django.contrib.auth.forms import UserChangeForm
 
 
 def base_view(request):
-    return render(request, 'base.html')
+    return render(request, 'pages/base.html')
 
 def logged_out_view(request):
     return render(request, 'accounts/logged_out.html')
