@@ -57,8 +57,8 @@ def search_item_view(request):
                 print(queryset)
                 result = Item.objects.filter(category__exact=int(queryset['category']))
                 result = result.filter(retrieved__exact=(True if queryset['retrieved']=='True' else False))
-                if int(queryset['building']):
-                    result = result.filter(building__exact=int(queryset['building']))
+                if queryset['building']:
+                    result = result.filter(building__exact=queryset['building'])
                 if queryset['room']:
                     result = result.filter(room__iexact=queryset['room'])
                 if queryset['from_date']:

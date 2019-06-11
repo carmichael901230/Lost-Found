@@ -1,114 +1,8 @@
 from django import forms
-from .models import Item
+from .models import Item, Color, Building, Category
 import datetime
+from .fields import GroupedModelChoiceField
 
-CATE_CHOICES = [
-    ("Electronics",(
-        (1,"Flash Drives"),
-        (2,"Phones"),
-        (3,"Calculators"),
-        (4,"Laptops/PC"),
-        (5,"Chargers/Cabels"),
-        (6,"Power Banks"),
-        (7,"Headphones/Earbuds"),
-        (9,"Other Electronics")
-    )),
-    ("Books",(
-        (11,"Textbooks"),
-        (12,"Notebooks")
-    )),
-    ("Cards",(
-        (21,"ID Cards"),
-        (22,"Credit/Debit Cards"),
-        (29,"Other Cards")
-    )),
-    ("Office Products",(
-        (31,"Pens/Pencils"),
-        (32,"Erasers"),
-        (33,"Rulers"),
-        (34,"Sharpeners"),
-        (35,"Binders"),
-        (36,"Bottles"),
-        (39,"Other Office Products")
-    )),
-    ("Clothing & Accessories",(
-        (41,"Clothes"),
-        (42,"Pants"),
-        (43,"Shoes"),
-        (44,"Hats"),
-        (45,"Watches"),
-        (46,"Glasses"),
-        (49,"Other Accessories")
-    )),
-    ("Others", (
-        (99, "Others"),
-    )),
-]
-
-COLOR_CHOICES = [
-    ('', "Not Selected"),
-    ('white',"White"),
-    ('grey',"Grey"),
-    ('black',"Black"),
-    ('blue',"Blue"),
-    ('green',"Green"),
-    ('yellow',"Yellow"),
-    ('orange',"Orange"),
-    ('red',"Red"),
-    ('pink',"Pink"),
-    ('purple',"Purple"),
-    ('brown',"Brown")
-]
-
-BUILDING_CHOICES = [
-    ("", (
-        (0, "Not Selected"),
-    )),
-    ("Buildings", (
-        (1, "Alumni Hall"),
-        (2, "Campbell Dome"),
-        (3, "Colden Auditorium"),
-        (4, "Colwin Hall"),
-        (5, "Continuing Ed"),
-        (6, "Delany Hall"),
-        (7, "Dining Hall"),
-        (8, "FitzGerald Gym"),
-        (9, "Frese Hall"),
-        (10, "G Building"),
-        (11, "Gertz Center"),
-        (12, "Goldstein Theatre"),
-        (13, "Honors Hall"),
-        (14, "I Building"),
-        (15, "Jefferson Hall"),
-        (16, "Kiely Hall"),
-        (17, "King Hall"),
-        (18, "Kissena Hall"),
-        (19, "Klapper Hall"),
-        (20, "Music Building"),
-        (21, "Powdermaker Hall"),
-        (22, "Queens Hall"),
-        (23, "Rathaus Hall"),
-        (24, "Razran Hall"),
-        (25, "Remsen Hall"),
-        (26, "Rosenthal Library"),
-        (27, "Science Building"),
-        (28, "Student Union"),
-        (29, "Tech Incubator"),
-        (30, "The Summit"),
-        (39, "Other Buildings"),
-    )),
-    ("Fields/Courts", (
-        (41, "Track & Soccer Fields"),
-        (42, "Lacrosse Field"),
-        (43, "Baseball Field"),
-        (44, "Softball Field"),
-        (45, "Tennis Courts"),
-        (49, "Other Fields/Courts"),
-    )),
-    ("Others", (
-        (99, "Others"),
-    )),
-]
 
 RETRIEVE_STATUS = [
     (False, "Not Retrieved"),
@@ -129,16 +23,21 @@ class ShowItemForms(forms.ModelForm):
             'retrieved'
         ]
 
-    category = forms.ChoiceField(choices=CATE_CHOICES)
-    color = forms.ChoiceField(choices=COLOR_CHOICES)
+    category = GroupedModelChoiceField(
+                queryset=Category.objects.exclude(parent=None), 
+                choices_groupby='parent'
+        )
+    color = forms.ModelChoiceField(queryset=Color.objects.all())
     date = forms.DateField(
         widget=forms.DateInput(format='%m/%d/%Y',
             attrs={
                 "placeholder":"MM/DD/YYYY"
             }
         ))
-    building = forms.ChoiceField(choices = BUILDING_CHOICES,
-                             widget=forms.Select())
+    building = GroupedModelChoiceField(
+                queryset=Building.objects.exclude(parent=None), 
+                choices_groupby='parent'
+        )
     room = forms.CharField(required=False,
         widget=forms.TextInput(
             attrs={
@@ -168,8 +67,11 @@ class RegisterItemForms(forms.ModelForm):
             'image',
             'register_user'
         ]
-    category = forms.ChoiceField(choices=CATE_CHOICES)
-    color = forms.ChoiceField(choices=COLOR_CHOICES)
+    category = GroupedModelChoiceField(
+                queryset=Category.objects.exclude(parent=None), 
+                choices_groupby='parent'
+        )
+    color = forms.ModelChoiceField(queryset=Color.objects.all())
     date = forms.DateField(required=False,
         widget=forms.DateInput(format='%m/%d/%Y',
             attrs={
@@ -178,8 +80,10 @@ class RegisterItemForms(forms.ModelForm):
         )
     )
     image = forms.ImageField(required=True)
-    building = forms.ChoiceField(choices = BUILDING_CHOICES,
-                            widget=forms.Select())
+    building = GroupedModelChoiceField(
+                queryset=Building.objects.exclude(parent=None), 
+                choices_groupby='parent'
+        )
     room = forms.CharField(required=False,
         widget=forms.TextInput(
             attrs={
@@ -212,13 +116,17 @@ class SearchItemForms(forms.ModelForm):
             }
         )
     )
-    category = forms.ChoiceField(choices=CATE_CHOICES)
+    category = GroupedModelChoiceField(
+                queryset=Category.objects.exclude(parent=None), 
+                choices_groupby='parent'
+        )
     retrieved = forms.ChoiceField(choices = RETRIEVE_STATUS,
                             widget=forms.Select(),
                             )
-    building = forms.ChoiceField(choices=BUILDING_CHOICES, required=False,
-                            widget=forms.Select()
-                            )
+    building = GroupedModelChoiceField(
+                queryset=Building.objects.exclude(parent=None), 
+                choices_groupby='parent'
+        )
     room = forms.CharField(required=False,
         widget=forms.TextInput(
             attrs={
@@ -226,4 +134,4 @@ class SearchItemForms(forms.ModelForm):
             }
         )
     )
-    color = forms.ChoiceField(choices=COLOR_CHOICES, required=False)
+    color = forms.ModelChoiceField(queryset=Color.objects.all(), required=False)
