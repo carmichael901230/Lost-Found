@@ -4,11 +4,9 @@ from profiles.forms import UserProfileForm, ProfileEditForm
 from django.contrib.auth import authenticate, login
 from profiles.models import Profile
 from django.contrib.auth.forms import UserChangeForm
+from django.contrib.auth.decorators import login_required
 
-
-def base_view(request):
-    return render(request, 'pages/base.html')
-
+@login_required
 def logged_out_view(request):
     return render(request, 'accounts/logged_out.html')
 
@@ -36,6 +34,7 @@ def register_view(request):
     }
     return render(request, 'accounts/register.html', context)
 
+@login_required
 def profile_view(request):
     context = {
         'user': request.user,
@@ -43,6 +42,7 @@ def profile_view(request):
     }
     return render(request, 'accounts/profile.html', context)
 
+@login_required
 def profile_edit_view(request):
     if request.method == "POST":
         user_form = UserEditForm(request.POST, instance=request.user)

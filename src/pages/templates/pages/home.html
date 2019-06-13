@@ -1,0 +1,18 @@
+{% extends 'pages/base.html'%}
+
+{% block head-block %}
+<div class="container">
+<h1>Home Page</h1>
+</div>
+{% endblock head-block %}
+
+{% block content-block %}
+<div class='container'>
+<h1 class="jumbotron-heading">Welcome, {{ user.username }}<h1>
+<p class="lead text-muted">
+Clicking following buttons to either <strong>Register</strong> an item or <strong>Search</strong> for an item
+</p>
+<a href="{% url 'items:register_item'%}" class="btn btn-primary my-2">Register</a>
+<a href="{% url 'items:search_item'%}" class="btn btn-primary my-2">Search</a>
+</div>
+{% endblock content-block %}

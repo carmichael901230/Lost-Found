@@ -2,8 +2,10 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Item
 from .forms import ShowItemForms, RegisterItemForms, SearchItemForms
 from datetime import date, datetime
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+@login_required
 def show_item_view(request, item_id):
     if request.method=="POST":
         item = get_object_or_404(Item, id=item_id)
@@ -25,6 +27,7 @@ def show_item_view(request, item_id):
         }
         return render(request, 'search_item/show_item.html', context)
 
+@login_required
 def register_item_view(request):
     if request.method=="POST":
         form = RegisterItemForms(request.POST, request.FILES)
@@ -43,6 +46,7 @@ def register_item_view(request):
     }
     return render(request, 'register_item/register_item.html', context)
 
+@login_required
 def search_item_view(request):
     if request.method=="GET":
         form = SearchItemForms(request.GET)
@@ -54,10 +58,9 @@ def search_item_view(request):
         else:
             if form.is_valid():
                 queryset = form.cleaned_data
-                print(queryset)
-                result = Item.objects.filter(category__exact=int(queryset['category']))
+                result = Item.objects.filter(category__exact=queryset['category'])
                 result = result.filter(retrieved__exact=(True if queryset['retrieved']=='True' else False))
-                if queryset['building']:
+                if queryset['building'] and queryset['building'].pk!=42:
                     result = result.filter(building__exact=queryset['building'])
                 if queryset['room']:
                     result = result.filter(room__iexact=queryset['room'])
