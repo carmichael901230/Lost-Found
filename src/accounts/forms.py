@@ -4,10 +4,50 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from profiles.models import Profile
 
 class UserRegisterForm(UserCreationForm):
-    email = forms.EmailField()
-    first_name = forms.CharField(max_length=20, required=True)
-    last_name = forms.CharField(max_length=20, required=True)
-    
+    username = forms.CharField(max_length=20,
+        widget=forms.PasswordInput(
+            attrs={
+                'class':"form-control"
+            }
+        )
+    )
+    password1 = forms.CharField(
+        widget=forms.PasswordInput(
+            attrs={
+                'class':"form-control"
+            }
+        )
+    )
+    password2 = forms.CharField(
+        widget=forms.PasswordInput(
+            attrs={
+                'class':"form-control"
+            }
+        )
+    )
+    email = forms.EmailField(required=False,
+        widget=forms.TextInput(
+            attrs={
+                'class':"form-control",
+                'size':30
+            }
+        )
+    )
+    first_name = forms.CharField(max_length=20,
+        widget=forms.TextInput(
+            attrs={
+                'class':"form-control"
+            }
+        )
+    )
+    last_name = forms.CharField(max_length=20,
+        widget=forms.TextInput(
+            attrs={
+                'class':"form-control"
+            }
+        )
+    )
+
     class Meta:
         model = User
         fields = [
@@ -31,6 +71,29 @@ class UserRegisterForm(UserCreationForm):
         return user
 
 class UserEditForm(UserChangeForm):
+    email = forms.EmailField(
+        widget=forms.TextInput(
+            attrs={
+                'class':"form-control",
+                'size':30
+            }
+        )
+    )
+    first_name = forms.CharField(max_length=20,
+        widget=forms.TextInput(
+            attrs={
+                'class':"form-control"
+            }
+        )
+    )
+    last_name = forms.CharField(max_length=20,
+        widget=forms.TextInput(
+            attrs={
+                'class':"form-control"
+            }
+        )
+    )
+    
     class Meta:
         model = User
         fields = [
@@ -38,3 +101,4 @@ class UserEditForm(UserChangeForm):
             'last_name',
             'email'
         ]
+    

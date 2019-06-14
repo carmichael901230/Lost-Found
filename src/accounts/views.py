@@ -1,10 +1,11 @@
 from django.shortcuts import render, HttpResponse, redirect
 from .forms import UserRegisterForm, UserEditForm
 from profiles.forms import UserProfileForm, ProfileEditForm
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, update_session_auth_hash
 from profiles.models import Profile
-from django.contrib.auth.forms import UserChangeForm
+from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 @login_required
 def logged_out_view(request):
@@ -58,6 +59,24 @@ def profile_edit_view(request):
         profile_form = ProfileEditForm(instance=Profile.objects.get(user__id=request.user.pk))
         context = {
             'user_form': user_form,
-            'profile_form': profile_form
+            'profile_form': profile_form,
+            'profile':Profile.objects.get(user__id=request.user.pk)
         }
         return render(request, "accounts/profile_edit.html", context)
+
+@login_required
+def change_pw_view(request):
+    if request.method == "POST":
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            form.save()
+            update_session_auth_hash(request, form.user)
+            return redirect('accounts:profile')
+        else:
+            return redirect('accounts:change_password')
+    else:
+        form = PasswordChangeForm(request.user)
+        context = {
+            'form': form,
+        }
+        return render(request, "accounts/change_password.html", context)

@@ -11,10 +11,10 @@
 {% block content-block %}
 <div>
     <p>User Name: {{ user.username }}</p>
+    <p>Employee ID: <strong>{{ profile.employeeID }}</strong></p>
     <p>First Name: {{ user.first_name }}</p>
     <p>Last Name: {{ user.last_name }}</p>
     <p>Email: {{ user.email }}</p>
-    <p>Employee ID: {{ profile.employeeID }}</p>
     <p>Phone: {% if profile.phone is not None %} 
                 {{ profile.phone }} 
               {% else %} 
@@ -23,5 +23,6 @@
 </div>
 <div>
   <a href="{% url 'accounts:profile_edit' %}" class="btn btn-primary my-2">Edit Profile</a>
+  <a href="{% url 'accounts:change_password'%}" class="btn btn-secondary my-2">Change Password</a> 
 </div>
 {% endblock content-block %}
