@@ -1,13 +1,15 @@
+{% load staticfiles %}
+
 <!doctype html>
 <html lang='en'>
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}"/>
         
+
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
         {% block title-block %}
         <title>Lost & Found</title>
@@ -26,18 +28,18 @@
                     <a class="nav-item nav-link" href="{% url 'items:register_item'%}">Register</a>
                     <a class="nav-item nav-link" href="{% url 'items:search_item'%}">Search</a>
                 </div>
-                <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+                <div class="navbar-nav w-100 order-3 dual-collapse2">
                     <ul class="navbar-nav ml-auto">
                     {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'accounts:profile' %}">{{ user.username }}</a>
+                        <a class="btn btn-secondary btn-sm active" style="margin:2px" href="{% url 'accounts:profile' %}">{{ user.username }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'accounts:logout' %}">Logout</a>
+                        <a class="btn btn-danger btn-sm active" style="margin:2px" href="{% url 'accounts:logout' %}">Logout</a>
                     </li>
                     {% else %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'accounts:login' %}">Login</a>
+                        <a class="btn btn-primary btn-sm active" style="margin:2px" href="{% url 'accounts:login' %}">Login</a>
                     </li>
                     {% endif %}
                     </li>
@@ -55,20 +57,9 @@
         </section>
         <div class='container'>
             {% block content-block %}
-            <div class="container">
-            <h2>Welcome, 
-            {% if user.is_authenticated %}
-            {{ user.username }} 
-            <h2>Not you? <a href="{% url 'accounts:logout' %}">Logout</a></h2>
-            {% else %}
-            You are not login yet. <a href="{% url 'accounts:login' %}">Login</a>
-            {% endif %}
-            </h2>
-            </div>
             {% endblock content-block %}
 
             {% block search-result-block %}
-            
             {% endblock search-result-block %}
         </div>
         </main>

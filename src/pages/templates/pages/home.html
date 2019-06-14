@@ -2,7 +2,7 @@
 
 {% block head-block %}
 <div class="container">
-<h1>Home Page</h1>
+<h1>Never Miss a Thing</h1>
 </div>
 {% endblock head-block %}
 
@@ -12,7 +12,7 @@
 <p class="lead text-muted">
 Clicking following buttons to either <strong>Register</strong> an item or <strong>Search</strong> for an item
 </p>
-<a href="{% url 'items:register_item'%}" class="btn btn-primary my-2">Register</a>
-<a href="{% url 'items:search_item'%}" class="btn btn-primary my-2">Search</a>
+<a href="{% url 'items:register_item'%}" class="btn btn-primary btn-lg my-2">Register</a>
+<a href="{% url 'items:search_item'%}" class="btn btn-primary btn-lg my-2">Search</a>
 </div>
 {% endblock content-block %}
