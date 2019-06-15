@@ -2,21 +2,21 @@
 
 A lost and found web server can be used for many use-case
 
-## Quick Demo
+# Quick Demo:
 
-**Home page**
+### - Home page
 ![home](https://user-images.githubusercontent.com/34822412/59555691-4524b780-8f84-11e9-9fb5-1f01dc79cdfa.jpg)
 
-**Register when an item was found**
+### - Register when an item was found
 ![register](https://user-images.githubusercontent.com/34822412/59555700-700f0b80-8f84-11e9-8c7e-d798a2a8456e.jpg)
 
-**Search for an item**
+### - Search for an item
 ![search](https://user-images.githubusercontent.com/34822412/59555705-7ac9a080-8f84-11e9-87c4-f094cf2ed2b2.jpg)
 
-**Edit saved item**
+### - Edit saved item
 ![edit](https://user-images.githubusercontent.com/34822412/59555710-8917bc80-8f84-11e9-9d05-8ff0e21b9299.jpg)
 
-##  Setup and prerequisites
+#  Setup and prerequisites:
 
 ### 1. install Python
 
