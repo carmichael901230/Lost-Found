@@ -13,13 +13,16 @@
     </tr>
 </thread>
 <tbody>
+    
     {% for obj in object_list %}
-    <th scope="row">{{obj.pk}}</th>
-    <td>{{obj.category }}</td>
-    <td>{{obj.building}} {% if obj.room %}- {{obj.room}} {% endif %}</td>
-    <td>{{obj.color}}</td>
-    <td>{{obj.data}}</td>
-    <td><a href="{{obj.get_absolute_url}}">View/Edit</a>
+    <tr>
+        <th scope="row">{{obj.pk}}</th>
+        <td>{{obj.category }}</td>
+        <td>{{obj.building}} {% if obj.room %}- {{obj.room}} {% endif %}</td>
+        <td>{{obj.color}}</td>
+        <td>{{obj.date}}</td>
+        <td><a href="{{obj.get_absolute_url}}">View/Edit</a>
+    </tr>
     {% endfor %}
 </tbody>
 </table>

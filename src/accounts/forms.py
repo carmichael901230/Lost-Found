@@ -5,7 +5,7 @@ from profiles.models import Profile
 
 class UserRegisterForm(UserCreationForm):
     username = forms.CharField(max_length=20,
-        widget=forms.PasswordInput(
+        widget=forms.TextInput(
             attrs={
                 'class':"form-control"
             }
