@@ -12,11 +12,11 @@
     {{ form.non_field_errors }}
     <p>
         {{ form.category.errors }}
-        <label for="{{ form.category.id_for_label }}">Categoy: </label>
+        <label for="{{ form.category.id_for_label }}"><strong>Categoy: </strong></label>
         {{ form.category }}
 
         {{ form.building.errors }} {{ form.room.errors }}
-        <label for="{{ form.building.id_for_label }}">Location of Lost: </label>
+        <label for="{{ form.building.id_for_label }}"><strong>Location of Lost: </strong></label>
         {{ form.building }} {{ form.room }}
     </p>
     <p>
@@ -33,11 +33,16 @@
     </p>
     <p>
         {{ form.retrieved.errors }}
-        <label for="{{ form.retrieved.id_for_label }}">Retrieved Status: </label>
+        <label for="{{ form.retrieved.id_for_label }}"><strong>Retrieved Status: </strong></label>
         {{ form.retrieved }}
         {{ form.color.errors }}
         <label for="{{ form.color.id_for_label }}">Color: </label>
         {{ form.color }}
+    </p>
+    <p>
+        {{ form.orderBy.errors }}
+        <label for="{{ form.orderBy.id_for_label }}">Order By: </label>
+        {{ form.orderBy }}
     </p>
 
     <button type="submit" class="btn btn-primary">Search</button>

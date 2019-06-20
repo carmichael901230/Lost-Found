@@ -7,7 +7,6 @@ from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
-@login_required
 def logged_out_view(request):
     return render(request, 'accounts/logged_out.html')
 

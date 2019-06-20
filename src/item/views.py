@@ -49,7 +49,7 @@ def register_item_view(request):
 @login_required
 def search_item_view(request):
     if request.method=="GET":
-        form = SearchItemForms(request.GET)
+        form = SearchItemForms(request.GET, initial={'retrieved': False, 'orderBy':None})
         if len(request.GET) == 0:
             context = {
                 'form': form
@@ -70,6 +70,8 @@ def search_item_view(request):
                     result = result.filter(date__lte=queryset['to_date'])
                 if queryset['color']:
                     result = result.filter(color__exact=queryset['color'])
+                if queryset['orderBy']:
+                    result = result.order_by(queryset['orderBy'])
                 print(result)
 
                 context = {

@@ -9,6 +9,13 @@ RETRIEVE_STATUS = [
     (True, "Retrieved"),
 ]
 
+ORDER_CHOICE = [
+    (None, '---------'),
+    ('building', 'Building'),
+    ('color', 'Color'),
+    ('date', 'Date'),
+]
+
 class ShowItemForms(forms.ModelForm):
     class Meta:
         model = Item
@@ -29,7 +36,8 @@ class ShowItemForms(forms.ModelForm):
         )
     color = forms.ModelChoiceField(queryset=Color.objects.all())
     date = forms.DateField(
-        widget=forms.DateInput(format='%m/%d/%Y',
+        widget=forms.DateInput(
+            format='%m/%d/%Y',
             attrs={
                 "placeholder":"MM/DD/YYYY"
             }
@@ -38,7 +46,8 @@ class ShowItemForms(forms.ModelForm):
                 queryset=Building.objects.exclude(parent=None), 
                 choices_groupby='parent'
         )
-    room = forms.CharField(required=False,
+    room = forms.CharField(
+        required=False,
         widget=forms.TextInput(
             attrs={
                 "placeholder":"Room"
@@ -46,13 +55,16 @@ class ShowItemForms(forms.ModelForm):
         )
     )
     retrieved_date = forms.DateField(required=False,
-        widget=forms.DateInput(format='%m/%d/%Y',
+        widget=forms.DateInput(
+            format='%m/%d/%Y',
             attrs={
                 "placeholder":"MM/DD/YYYY",
             }
         ))
-    retrieved = forms.ChoiceField(choices = RETRIEVE_STATUS,
-                             widget=forms.Select())
+    retrieved = forms.ChoiceField(
+        choices = RETRIEVE_STATUS,
+        widget=forms.Select()
+    )
 
 class RegisterItemForms(forms.ModelForm):
     class Meta:
@@ -72,7 +84,8 @@ class RegisterItemForms(forms.ModelForm):
                 choices_groupby='parent'
         )
     color = forms.ModelChoiceField(queryset=Color.objects.all())
-    date = forms.DateField(required=False,
+    date = forms.DateField(
+        required=False,
         widget=forms.DateInput(format='%m/%d/%Y',
             attrs={
                 "placeholder":"MM/DD/YYYY"
@@ -84,7 +97,8 @@ class RegisterItemForms(forms.ModelForm):
                 queryset=Building.objects.exclude(parent=None), 
                 choices_groupby='parent'
         )
-    room = forms.CharField(required=False,
+    room = forms.CharField(
+        required=False,
         widget=forms.TextInput(
             attrs={
                 "placeholder":"Room"
@@ -93,6 +107,11 @@ class RegisterItemForms(forms.ModelForm):
     )
 
 class SearchItemForms(forms.ModelForm):
+    orderBy = forms.ChoiceField(
+        required=False,
+        choices=ORDER_CHOICE,
+        widget=forms.Select()
+    )
     class Meta:
         model = Item
         fields = [
@@ -101,6 +120,7 @@ class SearchItemForms(forms.ModelForm):
             'color',
             'category',
             'retrieved',
+            'orderBy',
         ]
     from_date = forms.DateField(required=False,
         widget = forms.DateInput(
