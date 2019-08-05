@@ -22,8 +22,10 @@ A lost and found web server can be used for many use-case
 
 Go to Python official website and download latest version of Python https://www.python.org/downloads/
 
+**(Jump to step 5, if you are not going to use virtual environment)**
+
 ### 2. Setup virtual environment (It's optional but good practice)
-**Jump to step 5, if you don't use virtual environment**
+
 ```
 pip install virtualenv
 ```
