@@ -47,6 +47,9 @@ Open terminal and goto */Lost-Found* folder, then activate virtualenv mode
 
 ### 5. Install Modules
 ```
+pip install django
+```
+```
 pip install django-cleanup
 ```
 ```
