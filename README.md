@@ -40,7 +40,7 @@ virtualenv -p python .
 ```
 
 ### 4. Open project in virtual environment
-Open terminal and goto */Lost-Found* folder, then activate virtualenv mode
+Open terminal and goto ```/Lost-Found``` folder, then activate virtualenv mode
 ```
 ./Scripts/activate
 ```
@@ -57,7 +57,7 @@ pip install Pillow
 ```
 
 ### 6. Run server
-In the terminal, goto */Lost-Found/src* folder, enter following to run server
+In the terminal, goto ```/Lost-Found/src``` folder, enter following to run server
 
 ```
 python .\manager.py runserver
