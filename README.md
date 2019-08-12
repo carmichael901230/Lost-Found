@@ -2,7 +2,7 @@
 
 A lost and found web server can be used for many use-case
 
-For now, it is designed for Queens College, CUNY. The location options are those in Queens College, CUNY.
+For now, it is designed for Queens College, CUNY. The location options are locations in Queens College, CUNY.
 
 # Quick Demo:
 
